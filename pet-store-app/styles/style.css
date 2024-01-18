@@ -1,0 +1,152 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f8ede9;
+}
+
+.main-container {
+  width: 350px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20vh 0px 20vh;
+  height: 100vh;
+  position: relative;
+}
+
+/*Intro Page */
+
+.intro-title-section {
+  margin: 0 auto;
+  min-height: 100vh;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+}
+
+.intro-title-container {
+  display: flex;
+  height: 80%;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.intro-title-container > img {
+  width: 200px;
+  padding-bottom: 20px;
+}
+
+.intro-title-section h1 {
+  line-height: 0.8;
+  font-size: 2.5rem;
+  color: #501a0f;
+}
+
+.intro-title-section p {
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+/*button section */
+
+#start {
+  background-color: #f8ede9;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  color: #c1694f;
+  font-size: 1.6rem;
+  border: 2px solid #c1694f;
+}
+
+#start:hover {
+  background-color: #c1694f;
+  color: #f8ede9;
+}
+
+.touch-hover-effect {
+  background-color: #c1694f;
+  color: #f8ede9;
+}
+
+#start:active {
+  margin-top: 10px;
+}
+
+/* Paws Background */
+
+.intro-section-paws {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto;
+  padding: 0;
+}
+
+.dog-paws {
+  position: absolute;
+  height: 30px;
+  fill: #f8dbcf;
+  transform: rotate(160deg);
+}
+
+#paws-1 {
+  top: 55%;
+  left: 20%;
+  animation-name: paws;
+  animation-delay: 0.3s;
+}
+
+#paws-2 {
+  top: 60%;
+  left: 32%;
+  animation-name: paws;
+  animation-delay: 0.7s;
+}
+
+#paws-3 {
+  top: 67%;
+  left: 30%;
+  animation-name: paws;
+  animation-delay: 1.2s;
+}
+
+#paws-4 {
+  top: 72%;
+  left: 42%;
+  animation-name: paws;
+  animation-delay: 1.5s;
+}
+
+#paws-1,
+#paws-2,
+#paws-3,
+#paws-4,
+#paws-5 {
+  opacity: 0;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes paws {
+  to {
+    opacity: 100;
+  }
+}
