@@ -14,15 +14,18 @@ body {
 .main-container {
   width: 350px;
   margin: 0 auto;
+  min-height: 100vh;
+}
+
+/*Intro Page */
+
+.intro-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 20px 0px 20px;
-  min-height: 100vh;
   position: relative;
 }
-
-/*Intro Page */
 
 .intro-title-section {
   margin: 0 auto;
@@ -149,4 +152,76 @@ body {
   to {
     opacity: 100;
   }
+}
+
+/* Menu Page Styling */
+
+.menu-page-header {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0 10px;
+  font-family: "Raleway", sans-serif;
+}
+
+.menu-page-header img {
+  width: 60px;
+}
+
+.menu-page-header h1 {
+  color: #501a0f;
+  line-height: 0.8;
+}
+
+.menu-page-header p {
+  font-weight: 300;
+}
+
+.menu-page-special-container {
+  background-color: #c1694f;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  text-transform: uppercase;
+  color: #f8ede9;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+.menu-page-special-container > div {
+  animation-name: cycle;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+@keyframes cycle {
+  0% {
+    transform: translateX(-140%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/*Menu Page Items Styling*/
+
+.menu-item {
+  display: flex;
+}
+
+.menu-img {
+  object-fit: contain;
+  max-width: 25%;
+  max-height: 25%;
+  width: auto;
+  height: auto;
+}
+.menu-btn-img {
+  width: 25px;
+}
+
+.menu-description {
+  font-size: 0.8rem;
 }
