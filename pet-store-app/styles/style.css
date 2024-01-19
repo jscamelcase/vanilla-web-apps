@@ -208,7 +208,10 @@ body {
 /*Menu Page Items Styling*/
 
 .menu-item {
+  margin-top: 10px;
   display: flex;
+  border-bottom: 1px solid #c7b4ae;
+  padding: 10px;
 }
 
 .menu-img {
@@ -217,11 +220,30 @@ body {
   max-height: 25%;
   width: auto;
   height: auto;
+  padding-right: 10px;
 }
 .menu-btn-img {
-  width: 25px;
+  width: 20px;
+  padding-left: 5px;
+  fill: #501a0f;
 }
 
+.menu-btn-img:active {
+  margin-top: 10px;
+}
+
+.menu-title {
+  color: #c1694f;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 10px;
+}
 .menu-description {
-  font-size: 0.8rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.menu-ingredients {
+  font-size: 0.5rem;
+  margin-bottom: 10px;
 }

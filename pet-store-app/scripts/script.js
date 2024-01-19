@@ -27,6 +27,8 @@ const generateMenu = function () {
     const menuItemContainer = document.createElement("div");
     menuItemContainer.classList.add("menu-item");
     /* Create individual components of each menu item */
+    const menuItemTitle = document.createElement("h3");
+    menuItemTitle.classList.add("menu-title");
     const menuItemImage = document.createElement("img");
     menuItemImage.classList.add("menu-img");
     const menuItemDesContainer = document.createElement("div");
@@ -52,13 +54,15 @@ const generateMenu = function () {
       image,
     } = item;
     /* Add respective values to each created element*/
+    menuItemTitle.textContent = `${name}`;
     menuItemImage.src = `${image}`;
     menuItemDescription.textContent = `${shortDescription}`;
-    menuItemIngredients.textContent = `${ingredients.join(", ")}`;
+    menuItemIngredients.textContent = `Ingredients: ${ingredients.join(", ")}.`;
     menuItemPrice.textContent = `$${price}`;
     menuItemButtonImg.dataset.item = `${productId}`;
     /*compose each element together in the right order ahead of appending to the HTML menu section*/
     menuItemDesContainer.append(
+      menuItemTitle,
       menuItemDescription,
       menuItemIngredients,
       menuItemPrice
