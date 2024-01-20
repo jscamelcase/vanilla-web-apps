@@ -156,6 +156,10 @@ body {
 
 /* Menu Page Styling */
 
+.menu-page {
+  display: none;
+}
+
 .menu-page-header {
   padding: 20px 0;
   display: flex;

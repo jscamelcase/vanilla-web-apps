@@ -1,22 +1,7 @@
 //Import data
 import { menuList } from "../data/data.js";
 
-// Mobile touchstart callback function
-const startTouchHover = function (event) {
-  if (event.target.id === "start") {
-    event.target.classList.add("touch-hover-effect");
-  }
-};
-
-const endTouchHover = function (event) {
-  event.target.classList.remove("touch-hover-effect");
-};
-
-const addQuantity = function (event) {
-  console.log("Button Working");
-};
-
-/* Generate Menu List */
+/* Generate Menu List (lanuched by clicking start button) */
 const generateMenu = function () {
   // Grab hold of menu items container to place each menu item inside the container after loop construction
   const menuPageItems = document.querySelector(
@@ -42,7 +27,7 @@ const generateMenu = function () {
     const menuItemButtonImg = document.createElement("img");
     menuItemButtonImg.classList.add("menu-btn-img");
     menuItemButtonImg.src = "../images/addItem.svg";
-    menuItemButtonImg.addEventListener("click", addQuantity);
+    // menuItemButtonImg.addEventListener("click", addQuantity);
     /* Unpack each property from each object in the data array to go into each menu item section*/
     const {
       name,
@@ -77,20 +62,74 @@ const generateMenu = function () {
   }
 };
 
-// "click" event handler general callback function
+//generates order pop-up when main menu add button is clicked
+
+const generateAddOrder = function (event) {
+  //Set where the section should be added
+  const addOrderSection = document.querySelector(".order-modal-container");
+  // Match the click event target to the product and retrives the product information
+  const itemId = event.target.dataset.item;
+  const productDetails = menuList.filter((product) =>
+    product.productId.includes(itemId)
+  )[0];
+  console.log(typeof productDetails);
+  // unpack the product info to put on pop-up
+  const { name, price, image } = productDetails;
+  // Create elements for order pop-up
+  const orderContainer = document.createElement("div");
+  orderContainer.classList.add("order-container");
+  const orderName = document.createElement("h3");
+  orderName.classList.add("order-name");
+  const orderImg = document.createElement("img");
+  orderImg.classList.add("order-img");
+  const orderPrice = document.createElement("p");
+  orderPrice.classList.add("order-price");
+  const orderInputContainer = document.createElement("div");
+  orderInputContainer.classList.add("order-input-container");
+  const orderInputLabel = document.createElement("p");
+  orderInputLabel.classList.add("order-input-label");
+  orderInputLabel.textContent = "Pick Quantity";
+  const orderInput = document.createElement("input");
+  orderInput.type = "number";
+  orderInput.classList.add("order-input");
+  const orderButton = document.createElement("button");
+  orderButton.textContent = "Add to Cart";
+  //Add product info to relevant elements
+  orderName.textContent = `${name}`;
+  orderImg.src = `${image}`;
+  orderPrice.textContent = `${price}`;
+  //Compose various created elements to be appended to html
+  orderInputContainer.append(orderInputLabel, orderInput);
+  orderContainer.append(
+    orderName,
+    orderImg,
+    orderPrice,
+    orderInputContainer,
+    orderButton
+  );
+  //Append composed elements to HTML document
+  addOrderSection.append(orderContainer);
+};
+
+// "click" event handler for start button specifically
+const handleStart = function (event) {
+  console.log("hello");
+  event.stopPropagation(); // stop bubbling and firing off the general document "click" event listener
+  document.querySelector(".intro-container").style.display = "none";
+  document.querySelector(".menu-page").style.display = "block";
+  generateMenu();
+};
+
+// general document "click" handleing function
+
 const handleClicks = function (event) {
-  if (event.target.id === "start") {
-    console.log("hello");
-    document.querySelector(".intro-container").style.display = "none";
-    generateMenu();
+  if (event.target.dataset.item) {
+    generateAddOrder(event);
   }
 };
 
-// Mobile event listener solution to no hover on button touches
-document.addEventListener("touchstart", startTouchHover);
+// start button "click" event handler
+document.getElementById("start").addEventListener("click", handleStart);
 
-document.addEventListener("touchend", endTouchHover);
-
-// "click" event handler
-
-document.getElementById("start").addEventListener("click", handleClicks);
+// General Document Wide Event Listener
+document.addEventListener("click", handleClicks);
