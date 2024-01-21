@@ -99,7 +99,7 @@ const generateAddOrder = function (event) {
   orderInputContainer.classList.add("order-input-container");
   const orderInputLabel = document.createElement("p");
   orderInputLabel.classList.add("order-input-label");
-  orderInputLabel.textContent = "Pick Quantity";
+  orderInputLabel.textContent = "Enter Quantity";
   const orderInput = document.createElement("input");
   orderInput.type = "number";
   orderInput.classList.add("order-input");

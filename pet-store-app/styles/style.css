@@ -276,7 +276,7 @@ body {
   margin: auto auto;
   width: 300px;
   padding: 20px;
-  height: 30%;
+  height: 50%;
   text-align: center;
   background-color: #f8ede9;
 }
@@ -300,5 +300,62 @@ body {
 
 .order-btn-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.order-name {
+  color: #c1694f;
+  font-size: 1.7rem;
+  font-family: "Raleway", sans-serif;
+  margin-bottom: 10px;
+}
+
+.order-img {
+  object-fit: contain;
+  max-width: 30%;
+  max-height: 30%;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.order-price {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.order-input-label {
+  margin-bottom: 10px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.order-input {
+  margin-bottom: 10px;
+  line-height: 2;
+}
+
+.order-btn {
+  background-color: #f8ede9;
+  padding: 10px 5px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border: 2px solid #501a0f;
+  color: #501a0f;
+  font-weight: bold;
+}
+
+.order-btn-checkout {
+  background-color: #501a0f;
+  padding: 10px 5px;
+  border: 2px solid #501a0f;
+  font-weight: bold;
+  color: #f8ede9;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.order-btn-checkout:active,
+.order-btn:active {
+  margin-top: 10px;
 }
