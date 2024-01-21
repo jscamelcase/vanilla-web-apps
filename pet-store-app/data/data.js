@@ -43,7 +43,7 @@ const menuList = [
     price: 25.7,
     quantity: "300g",
     shortDescription:
-      "This delightful oven baked biscuts contain a mixture of natural ingredients to help soothe your dog for bedtime and provide good bacteria for gut health.",
+      "Thess delightful oven baked biscuts contain a mixture of natural ingredients to help soothe your dog for bedtime and provide good bacteria for gut health.",
     ingredients: [
       "Organic Rye Flour",
       "Organic Oat Flour",
