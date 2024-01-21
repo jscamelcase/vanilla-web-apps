@@ -15,6 +15,7 @@ body {
   width: 350px;
   margin: 0 auto;
   min-height: 100vh;
+  display: relative;
 }
 
 /*Intro Page */
@@ -254,7 +255,50 @@ body {
 
 /* Order Page Styling */
 
-.order-modal-container {
+/* .order-modal-container {
   /* display: none; */
-  /* set to display none once complete */
+/* set to display none once complete */
+/* }  */
+
+.order-modal {
+  position: relative;
+}
+
+.order-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto auto;
+  width: 300px;
+  padding: 20px;
+  height: 30%;
+  text-align: center;
+  background-color: #f8ede9;
+}
+
+.order-img {
+  height: 100px;
+}
+
+.order-close {
+  position: absolute;
+  height: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: auto;
+  margin-left: auto;
+  padding: 5px;
+  z-index: 2;
+}
+
+.order-btn-container {
+  display: flex;
+  justify-content: space-between;
 }

@@ -67,6 +67,8 @@ const generateMenu = function () {
 const generateAddOrder = function (event) {
   //Set where the section should be added
   const addOrderSection = document.querySelector(".order-modal-container");
+  //Clear the order-pop from any prior order
+  addOrderSection.innerHTML = "";
   // Match the click event target to the product and retrives the product information
   const itemId = event.target.dataset.item;
   const productDetails = menuList.filter((product) =>
@@ -78,6 +80,15 @@ const generateAddOrder = function (event) {
   // Create elements for order pop-up
   const orderContainer = document.createElement("div");
   orderContainer.classList.add("order-container");
+  const orderContainerClose = document.createElement("img");
+  orderContainerClose.src = "../images/close-button.svg";
+  orderContainerClose.classList.add("order-close");
+  orderContainerClose.id = "order-close";
+  orderContainerClose.addEventListener("click", (event) => {
+    event.stopPropagation();
+    document.querySelector(".order-modal-container").style.display = "none";
+    document.querySelector(".menu-page").style.filter = "none";
+  });
   const orderName = document.createElement("h3");
   orderName.classList.add("order-name");
   const orderImg = document.createElement("img");
@@ -92,23 +103,36 @@ const generateAddOrder = function (event) {
   const orderInput = document.createElement("input");
   orderInput.type = "number";
   orderInput.classList.add("order-input");
+  const orderButtonContainer = document.createElement("div");
+  orderButtonContainer.classList.add("order-btn-container");
   const orderButton = document.createElement("button");
+  orderButton.classList.add("order-btn");
+  orderButton.id = `order-add-cart-${itemId}`;
   orderButton.textContent = "Add to Cart";
+  const checkOutButton = document.createElement("button");
+  checkOutButton.classList.add("order-btn-checkout");
+  checkOutButton.id = `check-out-${itemId}`;
+  checkOutButton.textContent = "Checkout";
   //Add product info to relevant elements
   orderName.textContent = `${name}`;
   orderImg.src = `${image}`;
-  orderPrice.textContent = `${price}`;
+  orderPrice.textContent = `$${price}`;
   //Compose various created elements to be appended to html
   orderInputContainer.append(orderInputLabel, orderInput);
+  orderButtonContainer.append(orderButton, checkOutButton);
   orderContainer.append(
+    orderContainerClose,
     orderName,
     orderImg,
     orderPrice,
     orderInputContainer,
-    orderButton
+    orderButtonContainer
   );
   //Append composed elements to HTML document
   addOrderSection.append(orderContainer);
+  //Blur the menu page background
+  document.querySelector(".menu-page").style.filter = "blur(10px)";
+  document.querySelector(".order-modal-container").style.display = "block";
 };
 
 // "click" event handler for start button specifically
@@ -123,6 +147,7 @@ const handleStart = function (event) {
 // general document "click" handleing function
 
 const handleClicks = function (event) {
+  event.stopPropagation();
   if (event.target.dataset.item) {
     generateAddOrder(event);
   }
