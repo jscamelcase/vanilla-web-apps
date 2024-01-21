@@ -251,3 +251,10 @@ body {
   font-size: 0.5rem;
   margin-bottom: 10px;
 }
+
+/* Order Page Styling */
+
+.order-modal-container {
+  /* display: none; */
+  /* set to display none once complete */
+}
