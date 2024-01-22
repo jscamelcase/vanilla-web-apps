@@ -59,4 +59,6 @@ const menuList = [
   },
 ];
 
-export { menuList };
+const shoppingCart = [];
+
+export { menuList, shoppingCart };

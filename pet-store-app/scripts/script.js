@@ -1,5 +1,31 @@
 //Import data
-import { menuList } from "../data/data.js";
+import { menuList, shoppingCart } from "../data/data.js";
+
+const addToCart = function (event) {
+  const cartItemId = event.target.id.substr(15);
+  const cartItemDetails = menuList.filter(
+    (detail) => detail.productId === cartItemId
+  )[0];
+  const { name, price } = cartItemDetails;
+  const cartQuantity = Number(document.querySelector(".order-input").value);
+  const existingCartItem = shoppingCart.filter(
+    (item) => item.productId === cartItemId
+  )[0];
+  if (existingCartItem) {
+    existingCartItem.quantity += cartQuantity;
+    console.log(shoppingCart);
+  } else {
+    const newCartEntry = {
+      productId: cartItemId,
+      quantity: cartQuantity,
+      name: name,
+      // cartQuantity:
+    };
+    shoppingCart.push(newCartEntry);
+    console.log(shoppingCart);
+  }
+  document.querySelector(".order-input").value = null;
+};
 
 /* Generate Menu List (lanuched by clicking start button) */
 const generateMenu = function () {
@@ -74,7 +100,6 @@ const generateAddOrder = function (event) {
   const productDetails = menuList.filter((product) =>
     product.productId.includes(itemId)
   )[0];
-  console.log(typeof productDetails);
   // unpack the product info to put on pop-up
   const { name, price, image } = productDetails;
   // Create elements for order pop-up
@@ -108,6 +133,7 @@ const generateAddOrder = function (event) {
   const orderButton = document.createElement("button");
   orderButton.classList.add("order-btn");
   orderButton.id = `order-add-cart-${itemId}`;
+  orderButton.addEventListener("click", addToCart);
   orderButton.textContent = "Add to Cart";
   const checkOutButton = document.createElement("button");
   checkOutButton.classList.add("order-btn-checkout");
