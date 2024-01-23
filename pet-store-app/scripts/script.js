@@ -1,16 +1,41 @@
 //Import data
 import { menuList, shoppingCart } from "../data/data.js";
 
+const displayCart = function () {
+  const cartHeading = document.createElement("h3");
+  cartHeading.classList.add("cart-heading");
+  cartHeading.textContent = "Shopping Cart";
+  const cartListContainer = document.createElement("div");
+  cartListContainer.classList.add("cart-list-container");
+  shoppingCart.forEach((item) => {
+    const cartItemContainer = document.createElement("div");
+    const cartItemName = document.createElement("p");
+    cartItemName.textContent = item.name;
+    const cartItemPrice = document.createElement("p");
+    cartItemPrice.textContent = item.price;
+    const cartItemQuantity = document.createElement("p");
+    cartItemQuantity.textContent = item.quantity;
+    const cartItemTotal = document.createElement("p");
+    cartItemTotal;
+  });
+};
+
 const addToCart = function (event) {
+  //Grab the product id from the button html id
   const cartItemId = event.target.id.substr(15);
+  //Retrive the matching details of the product from the menu data
   const cartItemDetails = menuList.filter(
     (detail) => detail.productId === cartItemId
   )[0];
+  //Unpack the relevent items
   const { name, price } = cartItemDetails;
+  //Take the quanity from order screen
   const cartQuantity = Number(document.querySelector(".order-input").value);
+  //Retire the item section from the shopping cart if it exists
   const existingCartItem = shoppingCart.filter(
     (item) => item.productId === cartItemId
   )[0];
+  // check whether the cart items exists and act accordingly
   if (existingCartItem) {
     existingCartItem.quantity += cartQuantity;
     console.log(shoppingCart);
@@ -19,14 +44,14 @@ const addToCart = function (event) {
       productId: cartItemId,
       quantity: cartQuantity,
       name: name,
-      // cartQuantity:
+      price: price,
     };
     shoppingCart.push(newCartEntry);
     console.log(shoppingCart);
   }
+  // set the value of the quantity input field bacl to empty
   document.querySelector(".order-input").value = null;
 };
-
 /* Generate Menu List (lanuched by clicking start button) */
 const generateMenu = function () {
   // Grab hold of menu items container to place each menu item inside the container after loop construction
