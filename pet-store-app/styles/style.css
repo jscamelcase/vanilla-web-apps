@@ -359,3 +359,10 @@ body {
 .order-btn:active {
   margin-top: 10px;
 }
+
+/* Checkout Cart Modal */
+
+.cart-list-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
