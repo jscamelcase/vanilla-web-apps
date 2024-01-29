@@ -364,5 +364,24 @@ body {
 
 .cart-list-container {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 8fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  justify-items: end;
+  align-items: center;
+}
+
+.cart-list-container {
+  font-size: 0.98rem;
+}
+
+.grand-total-container {
+  grid-column: 1 / 5;
+  display: flex;
+  justify-content: end;
+}
+
+#grand-total-title {
+  padding-right: 10px;
+  font-weight: bold;
 }

@@ -9,15 +9,30 @@ const displayCart = function () {
   cartHeading.textContent = "Shopping Cart";
   const itemTitle = document.createElement("p");
   itemTitle.textContent = "Item";
+  itemTitle.style.fontWeight = "bold";
   const itemPrice = document.createElement("p");
+  itemPrice.style.fontWeight = "bold";
   itemPrice.textContent = "Price";
+  itemPrice.style.fontWeight = "bold";
   const itemQuantity = document.createElement("p");
+  itemQuantity.style.fontWeight = "bold";
   itemQuantity.textContent = "Qty";
+  itemQuantity.style.fontWeight = "bold";
   const itemTotal = document.createElement("p");
+  itemTotal.style.fontWeight = "bold";
   itemTotal.textContent = "Total";
+  const removeItem = document.createElement("p");
+  removeItem.style.fontWeight = "bold";
+  removeItem.textContent = "Remove";
   const cartListContainer = document.createElement("div");
   cartListContainer.classList.add("cart-list-container");
-  cartListContainer.append(itemTitle, itemPrice, itemQuantity, itemTotal);
+  cartListContainer.append(
+    itemTitle,
+    itemPrice,
+    itemQuantity,
+    itemTotal,
+    removeItem
+  );
   shoppingCart.forEach((item) => {
     const cartItemContainer = document.createElement("div");
     const cartItemName = document.createElement("p");
@@ -28,27 +43,61 @@ const displayCart = function () {
     cartItemQuantity.textContent = item.quantity;
     const cartItemTotal = document.createElement("p");
     cartItemTotal.classList.add("cart-item-total");
-    cartItemTotal.textContent =
-      "$" + Number(item.quantity) * Number(item.price);
+    if (item.productId === "dc-1" && Number(item.quantity) > 2) {
+      cartItemTotal.textContent =
+        "$" +
+        (Number(item.quantity) * Number(item.price) -
+          Math.floor(Number(item.quantity) / 3) * Number(item.price));
+      cartItemTotal.style.color = "red";
+    } else {
+      cartItemTotal.textContent =
+        "$" + Number(item.quantity) * Number(item.price);
+    }
+    const cartItemRemove = document.createElement("button");
+    cartItemRemove.textContent = "Remove";
+    cartItemRemove.classList.add("cart-delete");
+    cartItemRemove.dataset.toDelete = item.productId;
+    cartItemRemove.addEventListener("click", (event) => {
+      shoppingCart.forEach((shopItem, index) => {
+        if (shopItem.productId === event.target.dataset.toDelete) {
+          shoppingCart.splice(index, 1);
+        }
+      });
+      displayCart();
+    });
+
     cartListContainer.append(
       cartItemName,
       cartItemPrice,
       cartItemQuantity,
-      cartItemTotal
+      cartItemTotal,
+      cartItemRemove
     );
   });
+
+  const grandTotalContainer = document.createElement("div");
+  grandTotalContainer.classList.add("grand-total-container");
+  const grandTotalTitle = document.createElement("p");
+  grandTotalTitle.id = "grand-total-title";
+  grandTotalTitle.textContent = "Grand Total";
+  const grandTotalNumber = document.createElement("p");
+  grandTotalNumber.id = "grand-total-number";
+
+  console.log(cartListContainer);
   const cartTotal = Array.from(
     cartListContainer.querySelectorAll(".cart-item-total")
   ).map((item) => {
-    console.log(item.textContent);
-    return Number(item.textContent);
+    return Number(item.textContent.slice(1));
   });
 
-  console.log(cartTotal);
-
   const cartTotalFromArray = cartTotal.reduce((total, num) => {
-    return total + num.price;
-  }, 0);
+    return total + num;
+  });
+  grandTotalNumber.textContent = `$${cartTotalFromArray}`;
+
+  grandTotalContainer.append(grandTotalTitle, grandTotalNumber);
+
+  cartListContainer.append(grandTotalContainer);
 
   modalContainer.append(cartHeading, cartListContainer);
 };
@@ -80,10 +129,11 @@ const addToCart = function (event) {
       price: price,
     };
     shoppingCart.push(newCartEntry);
-    console.log(shoppingCart);
   }
   // set the value of the quantity input field bacl to empty
   document.querySelector(".order-input").value = null;
+  document.querySelector(".order-modal-container").style.display = "none";
+  document.querySelector(".menu-page").style.filter = "blur(0px)";
 };
 /* Generate Menu List (lanuched by clicking start button) */
 const generateMenu = function () {
@@ -222,7 +272,6 @@ const generateAddOrder = function (event) {
 
 // "click" event handler for start button specifically
 const handleStart = function (event) {
-  console.log("hello");
   event.stopPropagation(); // stop bubbling and firing off the general document "click" event listener
   document.querySelector(".intro-container").style.display = "none";
   document.querySelector(".menu-page").style.display = "block";
